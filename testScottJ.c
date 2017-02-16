@@ -63,12 +63,51 @@ void pre_auton()
 
 task autonomous()
 {
-  // ..........................................................................
-  // Insert user code here.
-  // ..........................................................................
 
-  // Remove this function call once you have "real" code.
-  AutonomousCodePlaceholderForTesting();
+	motor[frontRight] = 0;
+	motor[backRight] = 0;
+	motor[rightPush] = 0;
+	motor[leftPush] = 0;
+//set all motors to 0
+
+	wait1Msec(1);
+
+//move backward towards fence
+	motor[frontLeft] = -127;
+	motor[backLeft] = -127;
+	motor[frontRight] = -127;
+	motor[backRight] = -127;
+	wait1Msec(2700);
+//stop at fence
+	motor[frontLeft] = 0;
+	motor[backLeft] = 0;
+	motor[frontRight] = 0;
+	motor[backRight] = 0;
+	wait1Msec(1);
+
+//raise tower knock off star
+	motor[rightLift] = 127;
+	motor[leftLift] = 127;
+	wait1Msec(3000);
+
+	motor[leftLift] = 0;
+	motor[rightLift] = 0;
+	wait1Msec(1);
+
+//move left knock off stars
+	motor[hDrive] = 127;
+	wait1Msec(3000);
+
+	motor[leftLift] = 0;
+	motor[rightLift] = 0;
+	motor[hDrive] = 0;
+	wait1Msec(1);
+
+	motor[frontLeft] = 127;
+	motor[backLeft] = 127;
+	motor[frontRight] = 127;
+	motor[backRight] = 127;
+	wait1Msec(1000);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -89,8 +128,8 @@ task usercontrol()
   {
 
   //Drive Train
-		motor[frontLeft] = vexRT[Ch2];
-		motor[frontRight] = vexRT[Ch3];
+		motor[frontLeft] = vexRT[Ch3];
+		motor[frontRight] = vexRT[Ch2];
 	//	motor[five] = vexRT[Ch2];  - not using this port
 		motor[backLeft] = vexRT[Ch3];
 		motor[backRight] = vexRT[Ch2];
